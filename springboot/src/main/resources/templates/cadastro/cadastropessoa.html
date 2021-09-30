@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Cadastro	</title>
+  <link type="text/css" rel="stylesheet" href="/materialize/css/bootstrap-grid-min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="/materialize/css/layout.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="/materialize/css/componentes.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="/materialize/css/base.css"  media="screen,projection"/>
+</head>
+<body>
+
+  <main class="layout-assinatura">
+     <div class="container">
+		<form action="salvarpessoa" method="post" th:object=${pessoaobj}>
+			<h1 class="titulo-formulario">Cadastro Pessoa</h1>
+			
+			<div class="row">
+				<div class="grupo-entrada">
+	           		<label for="id">ID: </label>
+	           		<input id="id" type="text" th:field="*{id}" name="id" class="campo">
+	         	</div>
+				<div class="grupo-entrada">
+	           		<label for="nome">Nome: </label>
+	           		<input id="nome" type="text" th:field="*{nome}" name="nome" class="campo">
+	         	</div>
+	         	<div class="grupo-entrada">
+	           		<label for="sobrenome">Sobrenome: </label>
+	           		<input id="sobrenome" type="text" th:field="*{sobrenome}" name="sobrenome" class="campo">
+	         	</div>
+	         </div>
+		 	<div class="grupo-entrada">
+           		<label for="idade">Idade: </label>
+           		<input id="idade" type="text" th:field="*{idade}" name="idade" class="campo">
+         	</div>
+		  	
+		  	<input class="waves-effect waves-light btn" type="submit" value="Salvar">
+		</form>
+ 	</div>
+ </main>  
+ 
+ <div class="container">
+ 	<a href="/listapessoas"><button class="botao--listar">Lista Pessoas</button></a>
+ </div>
+   <div class="container">
+	 <table class="tabela">
+	 	<thead>
+	 		<th>Id</th>
+	 		<th>Nome</th>
+	 		<th>Sobrenome</th>
+	 		<th></th>
+	 	</thead>
+	 	<tbody>
+	 			<tr th:each = "pessoa : ${pessoas}">
+	   	    	<td th:text = "${pessoa.id}"></td>
+	   			<td th:text = "${pessoa.nome}"></td>
+	   			<td th:text = "${pessoa.sobrenome}"></td>
+	   			<td><a th:href="@{/editarpessoa/{idpessoa}(idpessoa = ${pessoa.id})}">Editar</a></td>
+	  		</tr>
+	 	</tbody>
+	 </table>
+ 	</div>
+ 	
+ 	
+ 	<footer class="layout-rodape">
+      <div class="container">
+        <p>&copy; CFRdoCarmo Cadastros. Todos os direitos reservados.</p>
+      </div>
+    </footer>
+ 	
+</body>
+</html>
